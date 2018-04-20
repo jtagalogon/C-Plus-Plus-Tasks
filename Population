@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+	int startPop;
+	double birth;
+	double death;
+	int year;
+	int sizePop;
+
+	int calculate(){
+
+		sizePop = startPop + (startPop * birth) - (startPop * death);
+		return sizePop;
+	}
+
+int main() {
+
+
+
+	cout << "Population Calculator" << endl;
+	cout << "   Enter a starting population: ";
+	cin >> startPop;
+	while(startPop < 2){
+		cout << "   Input Error: population cannot be less than 2, input a new value: ";
+		cin >> startPop;
+	}
+	cout << endl << "   Enter an annual birth rate: ";
+	cin >> birth;
+	while(birth < 0){
+			cout << "   Input Error: birth rate cannot be negative, input a new value: ";
+			cin >> birth;
+		}
+	cout << endl << "   Enter an annual death rate: ";
+	cin >> death;
+	while(death < 0){
+				cout << "   Input Error: death rate cannot be negative, input a new value: ";
+				cin >> death;
+			}
+	cout << endl << "   Enter number of years to display: ";
+	cin >> year;
+	while(year < 1){
+				cout << "   Input Error: years cannot be less than 1, input a new value: ";
+				cin >> year;
+			}
+	cout << endl;
+
+	int x = 1;
+	while(year > 0){
+		cout << "Population for year " << x << ": " << calculate() << endl;
+		startPop = calculate();
+		year--;
+		x++;
+	}
+
+	return 0;
+}
