@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int choice;
+	double radius;
+	double length;
+	double base;
+	double width;
+	double height;
+	double area;
+
+	cout << "Geometry Calculator" << endl;
+	cout << "   1. Calculate the Area of a Circle" << endl;
+	cout << "   2. Calculate the Area of a Rectangle" << endl;
+	cout << "   3. Calculate the Area of a Triangle" << endl;
+	cout << "   4. Quit" << endl;
+	cout << "   Enter your choice (1234): ";
+	cin >> choice;
+	while(choice > 4 || choice < 0){
+		cout << "Input Error: value out of range (1-4), enter new value: ";
+		cin >> choice;
+	}
+	cout << endl;
+
+	if(choice == 1){
+		cout << "Please enter radius: ";
+		cin >> radius;
+		while(radius < 0){
+				cout << "Input Error: value can't be negative, enter new value: ";
+				cin >> radius;
+			}
+		area = (3.14159)*radius*radius;
+	}else if(choice == 2){
+		cout << "Please enter length: ";
+		cin >> length;
+		while(length < 0){
+			cout << "Input Error: value can't be negative, enter new value: ";
+			cin >> length;
+		}
+		cout << endl << "Please enter width: ";
+		cin >> width;
+		while(width < 0){
+				cout << "Input Error: value can't be negative, enter new value: ";
+				cin >> width;
+			}
+		area = length * width;
+	}else if(choice == 3){
+		cout << "Please enter base: ";
+		cin >> base;
+		while(base < 0){
+				cout << "Input Error: value can't be negative, enter new value: ";
+				cin >> base;
+			}
+		cout << endl << "Please enter height: ";
+		cin >> height;
+		while(height < 0){
+				cout << "Input Error: value can't be negative, enter new value: ";
+				cin >> height;
+			}
+		area = base * height * .5;
+	}else{
+		return 0;
+	}
+	cout << endl << "Area: " << area;
+}
