@@ -1,0 +1,133 @@
+#include <iostream>
+using namespace std;
+
+double prices[15];
+int rows = 15;
+int seats = 30;
+int soldSeats = 0;
+char option;
+char theater[15][30];
+double sales = 0;
+
+void display(){
+	cout << "          ------------SEATS-------------" << endl;
+	cout << "          123456789012345678901234567890" << endl;
+	for(int x = 0; x < 15; x++){
+		if(x > 8){
+			cout << "Row " << x + 1 << "    ";
+		}
+		else{
+			cout << "Row " << x + 1 << "     ";
+		}
+		for(int j = 0; j < 30; j++){
+			cout << theater[x][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+
+void purchase(){
+	int tickets;
+	int row;
+	int seatNumber;
+	cout << "Enter number of tickets to purchase: ";
+	cin >> tickets;
+	while(tickets != 0){
+		cout << "Enter row (1-15): ";
+		cin >> row;
+		cout <<  "Enter seat number (1-30): ";
+		cin >> seatNumber;
+		cout << endl;
+		while((row < 1 || row > 15) || (seatNumber < 1 || seatNumber > 30)){
+			cout << "Invalid row/seat..." << endl;
+			cout << "Enter row (1-15): ";
+			cin >> row;
+			cout << "Enter seat number (1-30): ";
+			cin >> seatNumber;
+			cout << endl;
+		}
+		while(theater[row - 1][seatNumber - 1] == '*'){
+			cout << "Seat taken, choose another seat please." << endl;
+			cout << "Enter row (1-15): ";
+			cin >> row;
+			cout << "Enter seat number (1-30): ";
+			cin >> seatNumber;
+			cout << endl;
+		}
+		theater[row - 1][seatNumber - 1] = '*';
+		sales = sales + prices[row - 1];
+		soldSeats++;
+		tickets--;
+	}
+	display();
+}
+
+void rowCheck(){
+	int chosenRow;
+	int availSeats = 0;
+	cout << "Enter row: ";
+	cin >> chosenRow;
+	for(int o = 0; o < 30; o++){
+		if(theater[chosenRow - 1][o] == '#'){
+			availSeats++;
+		}
+	}
+	cout << "Available seats in row " << chosenRow << ": " << availSeats << endl << endl;
+}
+
+
+void menu(){
+	cout << "1: Purchase Seat(s)" << endl;
+	cout << "2: View Total Ticket Sales" << endl;
+	cout << "3: View Seats Sold/Available: " << endl;
+	cout << "4: Check available seats in a row: " << endl;
+	cout << "5: Exit" << endl;
+	cout << "Choose an option: ";
+	cin >> option;
+	switch(option){
+			case '1':
+			purchase();
+			menu();
+			break;
+			case '2':
+			cout << "Total Ticket Sales = $" << sales << endl << endl;
+			menu();
+			break;
+			case '3':
+			cout << "Number of seats sold: " << soldSeats << endl;
+			cout << "Number of seats available in theater: " << 450 - soldSeats << endl << endl;
+			menu();
+			break;
+			case '4':
+			rowCheck();
+			menu();
+			break;
+			case '5':
+			cout << "Program Ended";
+			break;
+	}
+}
+
+
+int main() {
+
+	cout << "Please enter seat prices for each row: " << endl;
+	int y = 1;
+	while(y != 16){
+		cout << "Row " << y << ": ";
+		cin >> prices[y-1];
+		y++;
+	}
+
+	for(int x = 0; x != 15; x++){
+				for(int j = 0; j < 30; j++){
+					theater[x][j] = '#';
+				}
+			}
+
+	display();
+	menu();
+
+
+}
