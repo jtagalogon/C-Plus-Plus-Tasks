@@ -1,0 +1,118 @@
+#include "DayOfYear.h"
+
+int main()
+{
+	int myDay;
+	cout << "Enter a day between 1 and 365: ";
+	cin >> myDay;
+	DayOfYear tester1 = DayOfYear(myDay);
+	tester1.print();
+}
+
+/*
+ * DayOfYear.cpp
+ *
+ *  Created on: May 1, 2018
+ *      Author: Justin
+ */
+
+#include <iostream>
+using namespace std;
+string day ="";
+string month = "";
+
+class DayOfYear{
+
+int days;
+
+DayOfYear(int day){
+	days = day;
+}
+
+void print(){
+	int a = days;
+	switch(a)
+	{
+	case (a < 0 && a > 32):
+		month = "January";
+		break;
+	case a > 31 && a < 60:
+		month = "February";
+		break;
+	case a > 60 && a < 91:
+			month = "March";
+			break;
+	case a > 90 && a < 121:
+			month = "April";
+			break;
+	case a > 120  && a < 152:
+			month = "May";
+			break;
+	case a > 151 && a < 182:
+			month = "June";
+			break;
+	case a > 181 && a < 213:
+			month = "July";
+			break;
+	case a > 212 && a < 244:
+			month = "August";
+			break;
+	case a > 243 && a < 274:
+			month = "September";
+			break;
+	case a > 273 && a < 305:
+			month = "October";
+			break;
+	case a > 304 && a < 335:
+			month = "November";
+			break;
+	case a > 334 && a < 366:
+			month = "December";
+			break;
+	}
+
+	switch(month){
+
+	case "January":
+		day = (string)a;
+		break;
+	case "February":
+			day = (string)(a - 31);
+			break;
+	case "March":
+				day = (string)(a - 59);
+				break;
+	case "April":
+				day = (string)(a - 90);
+				break;
+	case "May":
+				day = (string)(a - 120);
+				break;
+	case "June":
+				day = (string)(a - 151);
+				break;
+	case "July":
+				day = (string)(a - 181);
+				break;
+	case "August":
+			day = (string)(a - 212);
+			break;
+	case "September":
+				day = (string)(a - 243);
+				break;
+	case "October":
+				day = (string)(a - 273);
+				break;
+	case "November":
+				day = (string)(a - 304);
+				break;
+	case "December":
+				day = (string)(a - 334);
+				break;
+	}
+
+	cout << "The day in Month/Day format is: " << month << "/" << day;
+
+}
+
+}
